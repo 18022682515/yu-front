@@ -4,8 +4,8 @@
 ```javascript
 npm install yu-front --save
 ```
-<br>
-# 引入
+  
+**引入**
 ```javascript
 const { ajax, getCookies } = require('yu-front');
 ```
