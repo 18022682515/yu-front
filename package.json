@@ -1,11 +1,19 @@
 {
   "name": "yu-front",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "*仅用于web前端*",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "邓小宇",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/18022682515/yu-front.git"
+  },
+  "bugs": {
+    "url": "https://github.com/18022682515/yu-front/issues"
+  },
+  "homepage": "https://github.com/18022682515/yu-front#readme"
 }
