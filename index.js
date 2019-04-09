@@ -28,4 +28,13 @@ obj.getCookies = () => {
     return o;
 }
 
+obj.examineUser = (str, count=6) => {
+    let re1 = new RegExp('^\\w{'+count+',32}$');
+    let re2 = /^[0-9]*$/;
+    let bool1 = re1.test(str);
+    let bool2 = re2.test(str);
+    if(bool2) return false;
+    return bool1;
+}
+
 module.exports = Object.freeze(obj);
