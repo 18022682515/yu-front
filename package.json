@@ -1,7 +1,7 @@
 {
   "name": "yu-front",
-  "version": "1.0.1",
-  "description": "*仅用于web前端*",
+  "version": "1.0.7",
+  "description": "仅用于web前端",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
