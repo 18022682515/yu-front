@@ -6,4 +6,5 @@ const obj = Object.assign({}, timer, req, ele);
 
 module.exports = Object.freeze(obj);
 
-//{ el, $, tick, clearTick, ajax, getCookies, examineUser, TWEEN }
+//{ el, $, getType, tick, clearTick, ajax, getCookies, examineUser, TWEEN }
+
