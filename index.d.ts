@@ -25,5 +25,6 @@ declare function clearTick(timer:number):void;
 declare function examineUser(str:string, count?:number):boolean;
 declare function shape(element:any,options:Object,...args:Object[]):void;
 declare function getSite(ele:any):Object;
+declare function touch(Object):void;
 
 export { animate, shape, el, $, ajax, getCookies, tick, clearTick, examineUser };
