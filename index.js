@@ -1,10 +1,13 @@
-const timer = require('./lib/timer.js');
-const req = require('./lib/req.js');
-const ele = require('./lib/ele.js');
+import { tick,clearTick } from './lib/timer.js';
+import { ajax, getCookies, examineUser } from './lib/req.js';
+import { el, $ } from './lib/ele.js';
+import { animate } from './lib/animate.js';
+import { shape } from './lib/shape.js';
+import { getSite } from './lib/getSite.js';
 
-const obj = Object.assign({}, timer, req, ele);
+const front = { getSite,tick,clearTick,ajax, getCookies, examineUser,el, $,animate,shape };
+export { getSite,tick,clearTick,ajax, getCookies, examineUser,el, $,animate,shape };
+export default front;
 
-module.exports = Object.freeze(obj);
-
-//{ el, $, getType, tick, clearTick, ajax, getCookies, examineUser, TWEEN }
+// { el, $, ajax, getCookies, tick, clearTick, examineUser, svgPathAni }
 
