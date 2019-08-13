@@ -31,34 +31,35 @@ box.filterNaNClass();   //过滤掉非数字的类名
 let { top,left } = getSite(el('div'));  //获取某个div在文档中的坐标
 ```
 
-### dom元素的队列动画：js操作css:
+### dom元素的队列动画函数(css过渡动画)：`animate()`;
 ```javascript
-let box = el('#box') || document.getElementById('box');
+1、简单的使用示例：
+let box = el('#box');
+//animate( 元素对象, 动画1, 动画2 );
+animate( box, [{ width:'100px',height:100 }],[{ transform:{ scale:[2,2],translate:['100%','100%'] } }] );
+//box元素的动画顺序：1、500毫秒宽高变成100px; 2、再接着500毫秒，x轴和y轴分别放大2倍、偏移100%;
 
-//options.reverse说明：整个队列动画的倒放次数，设为true则无限循环。
-//options.reverseDelay说明：动画倒放时，是否计算设定的动画延迟时间。
-let options = { reverse:true, reverseDelay:true };
+2、如果需要给每一步动画设置：动画持续时间(默认500ms)和延迟时间(默认0ms)、动画缓动效果(默认ease-out)，如下例：
+animate( box, [{ width:'100px',height:100 },{ duration:1000,delay:500,timing:'ease-out' }], [{ transform:{ scale:[2,2],translate:['100%','100%'] } },{ duration:2000,delay:1000 }] );
 
-//动画1：数组的第一个对象是css属性对象，第二个对象是该动画的配置：duration是动画持续时间(毫秒)，delay是动画延迟时间(毫秒)，reverse是该动画的倒放次数。
-let ani1 = [{ width:200, transform:{rotate:'45deg'}, margin:[20,10,10,20], border:'10px solid #000' },{ duration:800, timing:'ease-out', delay:300, reverse:2 };
- 
-//动画2：设置该元素的width和opacity，动画持续1500毫秒
-let ani2 = [{ width:"100%", opacity:0.4 }, { duration:1500 }];
+3、如果需要动画倒放，设置options:
+//reverse：整个队列动画的倒放次数，设为true则无限循环，默认为false。
+//reverseDelay：动画倒放时，是否计算设定的动画延迟时间，默认为false。
+//endClose: 队列动画结束时，是否设置box.style.transition = ''，默认为false。
+let options = { reverse:true, reverseDelay:true, endClose:true };
+//animate( 元素对象, 动画选项对象, 动画1, 动画2 );
+animate( box, options, [{ width:'100px',height:100 }], [{ transform:{ scale:[2,2],translate:['100%','100%'] } }] );
 
-//队列动画：执行完ani1的动画，才执行ani2的动画，如果有ani3或更多，则以此类推。
-let promise = animate(box, options, ani1, ani2,……);
+4、animate函数返回Promise对象：
+let promise = animate(box, options, 动画1, 动画2, 动画3,……);
 
-//animate函数返回Promise对象：
-
-//如果开启了队列动画无限循环，即options.reverse=true，promise中返回的是options对象，设置options.reverse=false可以关闭队列动画的无限循环。
+5、如果开启了队列动画无限循环(即options.reverse===true)，animate函数立即返回promise，promise的resolve函数的参数是options对象，设置options.reverse=false可以关闭队列动画的无限循环，如下：
 promise.then(options=>{ options.reverse = false; }); //关闭列队动画的无限循环
 
-//如果没有开启队列动画无限循环，即options.reverse不等于true，则队列动画全部执行完后，promise中返回的是队列动画对象。
+6、如果没有开启队列动画无限循环(即options.reverse!==true)，则队列动画全部执行完后，才返回promise，promise的resolve函数的参数是队列动画对象。
 promise.then(aniRecord=>{ console.log(aniRecord) });
 //aniRecord是最后一次倒放的队列动画对象。
 
-
-//css属性是background-color:#000,请用js的方式：{backgroundColor:'#000'}，或{background:'#000'}
 ```
 
 ### dom元素的帧速动画：基于元素绝对定位的位移动画
