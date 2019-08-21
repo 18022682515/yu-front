@@ -8,7 +8,20 @@ npm install yu-front --save
   
 ### 引入
 ```javascript
-const { el, $, getSite, animate, shape, tick, clearTick, ajax, getCookies, getJSON, examineUser } = require('yu-front');
+const { 
+    animate, 
+    el, 
+    $, 
+    ajax, 
+    getCookies, 
+    tick, 
+    clearTick, 
+    examineUser,
+    shape, 
+    getSite,
+    scrollEvent,
+    getMatrix
+} = require('yu-front');
 ```
 
 ### `el('css元素选择器')` 返回dom对象
@@ -24,6 +37,15 @@ box.emptyClass();  //清空类名
 box.ClassIsExist('className1');   //判断类名是否存在，返回布尔值
 box.ClassIsNum();    //判断是否有纯数字的类名，返回布尔值
 box.filterNaNClass();   //过滤掉非数字的类名
+```
+
+### dom元素的滚动事件
+```javascript
+scrollEvent({
+    el:el('#box'),
+    scroll(e){},      //滚动时触发事件
+    scrollStop(e){},   //滚动停止时触发事件
+});
 ```
 
 ### 获取标签元素左上角，在文档中的坐标
@@ -139,4 +161,11 @@ examineUser(user);   //false，必须是最少6位的字数
 //如果最少6位无法满足，也可以修改最少字数
 let user = 'abc12';
 examineUser(user, 5);  //true，修改为最少5位的字数
+```
+
+### 将css3的transform属性转换成矩阵字符串,并返回
+```javascript
+let matrix = getMatrix({ scale:[2,2],translate:[50,30], rotate:222, skew:[45,30] });
+
+console.log(matrix);  //"matrix(-0.7136441795461799,-2.1963709427902183,-0.1480284382370718,-2.8245508636725045,100,60)"
 ```

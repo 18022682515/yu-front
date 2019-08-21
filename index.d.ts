@@ -25,6 +25,20 @@ declare function clearTick(timer:number):void;
 declare function examineUser(str:string, count?:number):boolean;
 declare function shape(element:any,options:Object,...args:Object[]):void;
 declare function getSite(ele:any):Object;
-declare function touch(Object):void;
+declare function scrollEvent(obj:Object):void;
+declare function getMatrix(transform:Object):string;
 
-export { animate, shape, el, $, ajax, getCookies, tick, clearTick, examineUser };
+export { 
+    animate, 
+    el, 
+    $, 
+    ajax, 
+    getCookies, 
+    tick, 
+    clearTick, 
+    examineUser,
+    shape, 
+    getSite,
+    scrollEvent,
+    getMatrix,
+};

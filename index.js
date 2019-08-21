@@ -1,14 +1,26 @@
-import { tick,clearTick } from './lib/timer.js';
-import { ajax, getCookies, examineUser } from './lib/req.js';
-import { el, $ } from './lib/ele.js';
-import { animate } from './lib/animate.js';
-import { shape } from './lib/shape.js';
-import { getSite } from './lib/getSite.js';
-import { touch } from './lib/touch.js';
+const { animate } = require('./lib/animate.js');
+const { el,$ } = require('./lib/ele.js');
+const { ajax, getCookies, examineUser } = require('./lib/req.js');
+const { tick,clearTick } = require('./lib/timer.js');
+const { shape } = require('./lib/shape.js');
+const { getSite } = require('./lib/getSite.js');
+const scrollEvent = require('./lib/scrollEvent.js');
+const getMatrix = require('./lib/transform.js');
+const Tween = require('./lib/tween.js');
 
-const front = { touch,getSite,tick,clearTick,ajax, getCookies, examineUser,el, $,animate,shape };
-export { touch,getSite,tick,clearTick,ajax, getCookies, examineUser,el, $,animate,shape };
-export default front;
-
-// { el, $, ajax, getCookies, tick, clearTick, examineUser, svgPathAni }
+module.exports = { 
+    animate, 
+    el, 
+    $, 
+    ajax, 
+    getCookies, 
+    tick, 
+    clearTick, 
+    examineUser,
+    shape, 
+    getSite,
+    scrollEvent,
+    getMatrix,
+    Tween
+};
 
