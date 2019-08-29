@@ -14,31 +14,31 @@ declare class Element{
     filterNaNClass():void;
     eleAddToScriptBefore(selector:string):void;
 }
-declare function animate(ele:any, options?:Object, ...args:Object[][]):Promise<any[]>;
+
 declare function el(selector:string):any;
 declare function $(...args:string[]):any[];
+declare function getSite(ele:any):Object;
+declare function animate(ele:any, options?:Object, ...args:Object[][]):Promise<any[]>;
+declare function shape(element:any,options:Object,...args:Object[]):void;
 declare function ajax(method:string, url:string, data:Object, header:Object): Promise<Object>;
-
 declare function getCookies():Object;
+declare function examineUser(str:string, count?:number):boolean;
 declare function tick(callback:()=>void):number;
 declare function clearTick(timer:number):void;
-declare function examineUser(str:string, count?:number):boolean;
-declare function shape(element:any,options:Object,...args:Object[]):void;
-declare function getSite(ele:any):Object;
-declare function scrollEvent(obj:Object):void;
 declare function getMatrix(transform:Object):string;
+declare function inertia(obj:Object):void;
 
 export { 
-    animate, 
     el, 
-    $, 
+    $,
+    getSite,
+    animate,
+    shape,
     ajax, 
     getCookies, 
-    tick, 
-    clearTick, 
     examineUser,
-    shape, 
-    getSite,
-    scrollEvent,
+    tick,
+    clearTick,
     getMatrix,
+    inertia
 };

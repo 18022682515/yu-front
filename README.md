@@ -9,18 +9,18 @@ npm install yu-front --save
 ### 引入
 ```javascript
 const { 
-    animate, 
     el, 
-    $, 
+    $,
+    getSite,
+    animate,
+    shape,
     ajax, 
     getCookies, 
-    tick, 
-    clearTick, 
     examineUser,
-    shape, 
-    getSite,
-    scrollEvent,
-    getMatrix
+    tick,
+    clearTick,
+    getMatrix,
+    inertia
 } = require('yu-front');
 ```
 
@@ -39,13 +39,13 @@ box.ClassIsNum();    //判断是否有纯数字的类名，返回布尔值
 box.filterNaNClass();   //过滤掉非数字的类名
 ```
 
-### dom元素的滚动事件
+### dom元素的帧速动画：基于元素绝对定位的位移动画
 ```javascript
-scrollEvent({
-    el:el('#box'),
-    scroll(e){},      //滚动时触发事件
-    scrollStop(e){},   //滚动停止时触发事件
-});
+let box = el('#box');
+box.speedAni({ x:5,y:5 }, { x:500,y:300 });
+//box.speedAni(帧速对象, 位移范围对象);
+//{x:5,y:5}表示每一帧box元素：x轴位移5px，y轴位移5px
+//{x:500,y:300}表示box元素在指定的范围内移动：x轴是0到500px，y轴是0到300px
 ```
 
 ### 获取标签元素左上角，在文档中的坐标
@@ -82,15 +82,6 @@ promise.then(options=>{ options.reverse = false; }); //关闭列队动画的无�
 promise.then(aniRecord=>{ console.log(aniRecord) });
 //aniRecord是最后一次倒放的队列动画对象。
 
-```
-
-### dom元素的帧速动画：基于元素绝对定位的位移动画
-```javascript
-let box = el('#box');
-box.speedAni({ x:5,y:5 }, { x:500,y:300 });
-//box.speedAni(帧速对象, 位移范围对象);
-//{x:5,y:5}表示每一帧box元素：x轴位移5px，y轴位移5px
-//{x:500,y:300}表示box元素在指定的范围内移动：x轴是0到500px，y轴是0到300px
 ```
 
 ### svg的path图形变化动画（仅支持大写字母的绘画）(仅作用于html中的svg)
@@ -135,16 +126,6 @@ let obj = getCookies();
 console.log(obj);   //{ 'key':'value' }
 ```
 
-### `tick(calback)、clearTick(timer)`：window.requestAnimationFrame和window.cancelAnimationFrame的简写
-```javascript
-let num = 0;
-function fn(){
-    conosle.log(num++);
-    if(num<100) tick(fn);
-}
-fn();
-```
-
 ### `examineUser(str,count)`：用于检验用户名和密码是否合法，判定规则：用这些字符，A-Z、a-Z、0-9、_，6位或以上到32位非纯数字，属于合法规则，函数返回true或false，合法是true
 ```javascript
 //合法：
@@ -163,9 +144,39 @@ let user = 'abc12';
 examineUser(user, 5);  //true，修改为最少5位的字数
 ```
 
+### `tick(calback)、clearTick(timer)`：window.requestAnimationFrame和window.cancelAnimationFrame的简写
+```javascript
+let num = 0;
+function fn(){
+    conosle.log(num++);
+    if(num<100) tick(fn);
+}
+fn();
+```
+
 ### 将css3的transform属性转换成矩阵字符串,并返回
 ```javascript
 let matrix = getMatrix({ scale:[2,2],translate:[50,30], rotate:222, skew:[45,30] });
 
 console.log(matrix);  //"matrix(-0.7136441795461799,-2.1963709427902183,-0.1480284382370718,-2.8245508636725045,100,60)"
+```
+
+### 手机端：手指滑动元素的惯性移动
+```javascript
+inertia({
+    ele:el('#app'),  //绑定dom元素
+    type:"*",   //"*|x|y"   x轴或y轴的移动方向，*是x和y
+    touchstart(e){   //手指按下事件
+        console.log('start');
+    },
+    touchmove(e){   //手指移动事件
+        console.log('move');
+    },
+    touchend(e){     //手指离开事件
+        console.log('end');
+    },
+    complete(){     //移动惯性结束时触发事件
+        console.log("惯性结束");
+    }
+});
 ```
