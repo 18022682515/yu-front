@@ -33,19 +33,7 @@ const {
 let box = el('#box') || document.getElementById('box');
 box.addClassName('className1','className2',……);  //增加类名
 box.removeClassName('className1','className2',……);  //删除类名
-box.emptyClass();  //清空类名
 box.ClassIsExist('className1');   //判断类名是否存在，返回布尔值
-box.ClassIsNum();    //判断是否有纯数字的类名，返回布尔值
-box.filterNaNClass();   //过滤掉非数字的类名
-```
-
-### dom元素的帧速动画：基于元素绝对定位的位移动画
-```javascript
-let box = el('#box');
-box.speedAni({ x:5,y:5 }, { x:500,y:300 });
-//box.speedAni(帧速对象, 位移范围对象);
-//{x:5,y:5}表示每一帧box元素：x轴位移5px，y轴位移5px
-//{x:500,y:300}表示box元素在指定的范围内移动：x轴是0到500px，y轴是0到300px
 ```
 
 ### 获取标签元素左上角，在文档中的坐标
