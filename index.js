@@ -6,6 +6,8 @@ const { ajax, getCookies, examineUser } = require('./lib/req.js');
 const { tick,clearTick } = require('./lib/timer.js');
 const { getMatrix } = require('./lib/transform.js');
 const { inertia } = require('./lib/inertia.js');
+const { ease } = require('./lib/ease.js');
+const { rate } = require('./lib/rate.js');
 
 module.exports = { 
     el, 
@@ -19,6 +21,8 @@ module.exports = {
     tick,
     clearTick,
     getMatrix,
-    inertia
+    inertia,
+    ease,
+    rate
 };
 

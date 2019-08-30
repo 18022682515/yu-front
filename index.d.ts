@@ -27,6 +27,8 @@ declare function tick(callback:()=>void):number;
 declare function clearTick(timer:number):void;
 declare function getMatrix(transform:Object):string;
 declare function inertia(obj:Object):void;
+declare function ease(speed:Object, init:Object, num:Number, callback:Function):Promise<Object>;
+declare function rate(speed:Object, init:Object, max:Object, callback:Function):Promise<Object>;
 
 export { 
     el, 
@@ -40,5 +42,7 @@ export {
     tick,
     clearTick,
     getMatrix,
-    inertia
+    inertia,
+    ease,
+    rate
 };

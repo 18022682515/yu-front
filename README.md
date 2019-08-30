@@ -20,7 +20,9 @@ const {
     tick,
     clearTick,
     getMatrix,
-    inertia
+    inertia,
+    ease,
+    rate
 } = require('yu-front');
 ```
 
@@ -41,7 +43,7 @@ box.ClassIsExist('className1');   //判断类名是否存在，返回布尔值
 let { top,left } = getSite(el('div'));  //获取某个div在文档中的坐标
 ```
 
-### dom元素的队列动画函数(css过渡动画)：`animate()`;
+### css3过渡动画——dom元素的队列动画：`animate()`;
 ```javascript
 1、简单的使用示例：
 let box = el('#box');
@@ -166,5 +168,27 @@ inertia({
     complete(){     //移动惯性结束时触发事件
         console.log("惯性结束");
     }
+});
+```
+
+### js动画：`rate(帧速值对象, 初始值对象, 目标值对象, 每一帧动画的回调函数)`
+```javascript
+rate({ x:3,y:3 }, { x:0,y:0 }, { x:500,y:100 }, (offset)=>{
+    console.log(offset);   //{ x:6,y:6 }   offset是每一帧动画的当前值对象
+}).then(ani=>{
+    console.log(ani);     //{ status:true }  本动画的状态对象
+    ani.status = false;   //暂停正在运行的动画
+    ani.status = true;    //启动暂停的动画
+});
+```
+
+### 惯性动画：`ease(帧速值对象, 初始值对象, 降速值, 每一帧动画的回调函数)`
+```javascript
+ease({ x:8,y:6 }, { x:0,y:0 }, 0.97, (offset)=>{
+    console.log(offset);   //{ x:8,y:6 }   offset是每一帧动画的当前值对象
+}).then(ani=>{
+    console.log(ani);     //{ status:true }  本动画的状态对象
+    ani.status = false;   //暂停正在运行的动画
+    ani.status = true;    //启动暂停的动画
 });
 ```
