@@ -1,6 +1,6 @@
 {
   "name": "yu-front",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "description": "仅用于web前端",
   "main": "index.js",
   "types":"index.d.ts",

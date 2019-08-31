@@ -5,14 +5,9 @@ declare class Ani implements Object{
     resume():void;
 }
 declare class Element{
-    speedAni(speed:{ x:number|string, y:number|string },max:{ x:number|string, y:number|string }):Ani;
     addClassName(...className:string[]):void;
     removeClassName(...className:string[]):void;
-    emptyClass():void;
     ClassIsExist(className:string):boolean;
-    ClassIsNum():boolean;
-    filterNaNClass():void;
-    eleAddToScriptBefore(selector:string):void;
 }
 
 declare function el(selector:string):any;
@@ -29,6 +24,7 @@ declare function getMatrix(transform:Object):string;
 declare function inertia(obj:Object):void;
 declare function ease(speed:Object, init:Object, num:Number, callback:Function):Promise<Object>;
 declare function rate(speed:Object, init:Object, max:Object, callback:Function):Promise<Object>;
+declare function css(ele:Element, styles:string|Object):string|void;
 
 export { 
     el, 
@@ -44,5 +40,6 @@ export {
     getMatrix,
     inertia,
     ease,
-    rate
+    rate,
+    css
 };

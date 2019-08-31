@@ -8,6 +8,7 @@ const { getMatrix } = require('./lib/transform.js');
 const { inertia } = require('./lib/inertia.js');
 const { ease } = require('./lib/ease.js');
 const { rate } = require('./lib/rate.js');
+const { css } = require('./lib/css.js');
 
 module.exports = { 
     el, 
@@ -23,6 +24,7 @@ module.exports = {
     getMatrix,
     inertia,
     ease,
-    rate
+    rate,
+    css
 };
 

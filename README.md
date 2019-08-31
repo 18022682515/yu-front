@@ -22,7 +22,8 @@ const {
     getMatrix,
     inertia,
     ease,
-    rate
+    rate,
+    css
 } = require('yu-front');
 ```
 
@@ -191,4 +192,13 @@ ease({ x:8,y:6 }, { x:0,y:0 }, 0.97, (offset)=>{
     ani.status = false;   //暂停正在运行的动画
     ani.status = true;    //启动暂停的动画
 });
+```
+
+### 获取或设置dom元素的css属性（已含兼容性处理）
+```javascript
+let ele = el("div");
+
+let str = css(ele,"width");  //获取dom元素当前样式的width
+
+css(ele,{ width:"100px",height:"50px" });  //设置dom元素的width和height
 ```
