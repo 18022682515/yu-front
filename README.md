@@ -8,23 +8,19 @@ npm install yu-front --save
   
 ### 引入
 ```javascript
-const { 
-    el, 
+import { 
+    el,
     $,
     getSite,
     animate,
-    shape,
     ajax, 
-    getCookies, 
+    cookie, 
     examineUser,
     tick,
     clearTick,
     getMatrix,
-    inertia,
-    ease,
-    rate,
     css
-} = require('yu-front');
+} from 'yu-front';
 ```
 
 ### `el('css元素选择器')` 返回dom对象
@@ -39,7 +35,7 @@ box.removeClassName('className1','className2',……);  //删除类名
 box.ClassIsExist('className1');   //判断类名是否存在，返回布尔值
 ```
 
-### 获取标签元素左上角，在文档中的坐标
+### 获取元素在文档中的坐标（元素的左上角）
 ```javascript
 let { top,left } = getSite(el('div'));  //获取某个div在文档中的坐标
 ```
@@ -75,15 +71,6 @@ promise.then(aniRecord=>{ console.log(aniRecord) });
 
 ```
 
-### svg的path图形变化动画（仅支持大写字母的绘画）(仅作用于html中的svg)
-```javascript
-//获取svg中的path元素对象
-let path = el('path');
-//参数说明：(path元素,{ reverse:循环次数 },{ d:'第一个图形' },{ d:'第二个图形' });
-shape(path,{ reverse:true },{ d:'M10 10 H90 V90 H10 Z' },{ d:'M50 10 L80 90 L10 40 L90 40 L20 90 Z' },……);
-//第一个图形到第二个图形的变化过程动画
-```
-
 ### `ajax(method, url, data，header)`：向服务器发送请求，返回Promise
 ```javascript
 //post请求:
@@ -111,10 +98,20 @@ p.then( result=>{
 } );
 ```
   
-### `getCookies()`：将document.cookie解析成对象，返回对象
+### `cookie`：document.cookie增删改查
 ```javascript
-let obj = getCookies();
-console.log(obj);   //{ 'key':'value' }
+/* cookie.set(key,value,expires) */
+cookie.set('abc','123',3600);   //增或改cookie，该cookie的有效时间是3600秒以内
+
+/* cookie.get(key) */
+cookie.get('abc');     //获取指定cookie
+cookie.get();          //获取所有cookie
+
+/* cookie.delete(key) */
+cookie.delete('abc');  //删除指定的cookie
+
+/* cookie.clear() */
+cookie.clear();        //清空cookie(删除所有cookie)
 ```
 
 ### `examineUser(str,count)`：用于检验用户名和密码是否合法，判定规则：用这些字符，A-Z、a-Z、0-9、_，6位或以上到32位非纯数字，属于合法规则，函数返回true或false，合法是true
@@ -152,47 +149,6 @@ let matrix = getMatrix({ scale:[2,2],translate:[50,30], rotate:222, skew:[45,30]
 console.log(matrix);  //"matrix(-0.7136441795461799,-2.1963709427902183,-0.1480284382370718,-2.8245508636725045,100,60)"
 ```
 
-### 手机端：手指滑动元素的惯性移动
-```javascript
-inertia({
-    ele:el('#app'),  //绑定dom元素
-    type:"*",   //"*|x|y"   x轴或y轴的移动方向，*是x和y
-    touchstart(e){   //手指按下事件
-        console.log('start');
-    },
-    touchmove(e){   //手指移动事件
-        console.log('move');
-    },
-    touchend(e){     //手指离开事件
-        console.log('end');
-    },
-    complete(){     //移动惯性结束时触发事件
-        console.log("惯性结束");
-    }
-});
-```
-
-### js动画：`rate(帧速值对象, 初始值对象, 目标值对象, 每一帧动画的回调函数)`
-```javascript
-rate({ x:3,y:3 }, { x:0,y:0 }, { x:500,y:100 }, (offset)=>{
-    console.log(offset);   //{ x:6,y:6 }   offset是每一帧动画的当前值对象
-}).then(ani=>{
-    console.log(ani);     //{ status:true }  本动画的状态对象
-    ani.status = false;   //暂停正在运行的动画
-    ani.status = true;    //启动暂停的动画
-});
-```
-
-### 惯性动画：`ease(帧速值对象, 初始值对象, 降速值, 每一帧动画的回调函数)`
-```javascript
-ease({ x:8,y:6 }, { x:0,y:0 }, 0.97, (offset)=>{
-    console.log(offset);   //{ x:8,y:6 }   offset是每一帧动画的当前值对象
-}).then(ani=>{
-    console.log(ani);     //{ status:true }  本动画的状态对象
-    ani.status = false;   //暂停正在运行的动画
-    ani.status = true;    //启动暂停的动画
-});
-```
 
 ### 获取或设置dom元素的css属性（已含兼容性处理）
 ```javascript
