@@ -9,6 +9,9 @@
   },
   "author": "邓小宇",
   "license": "ISC",
+	"dependencies": {
+	  "yu-util": "*"
+	},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/18022682515/yu-front.git"
@@ -16,8 +19,5 @@
   "bugs": {
     "url": "https://github.com/18022682515/yu-front/issues"
   },
-  "homepage": "https://github.com/18022682515/yu-front#readme",
-  "dependencies": {
-    "yu-util": "*"
-  }
+  "homepage": "https://github.com/18022682515/yu-front#readme"
 }
