@@ -71,27 +71,18 @@ promise.then(aniRecord=>{ console.log(aniRecord) });
 
 ```
 
-### `ajax(method, url, data，header)`：向服务器发送请求，返回Promise
+### `ajax(options)`：向服务器发送请求，返回Promise
 ```javascript
-//post请求:
-let p = ajax('post', '/getData', {user:'deng',password:'123456'});
-p.then( result=>{
-    let { headers,data } = result;
-    //headers是响应头
-    //data是响应数据
-} );
 
-//get请求：
-let p = ajax('get', '/getData',{user:'deng',password:'123456'});
-p.then( result=>{
-    let { headers,data } = result;
-    //headers是响应头
-    //data是响应数据
-} );
+let options = {
+	method:'get'|'post',  //请求方法
+	url:'xxx/api',   			//请求地址
+	data:{ id:1,user:'ming' }|'id=1&user=ming', //请求参数
+	header:{ '请求头字段','字段值' },  //请求头
+	type:''|'json'|'blob'|'arraybuffer'|'document', //响应的数据类型
+}
 
-//如果需要添加请求header：
-let p = ajax('get', '/getData',{ user:'deng',password:'123456' },{ 'header字段':'字段值' });
-p.then( result=>{
+ajax(options).then( result=>{
     let { headers,data } = result;
     //headers是响应头
     //data是响应数据
