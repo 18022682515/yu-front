@@ -1,39 +1,32 @@
-import { el,$ } from './lib/element.js';
-import { getSite } from './lib/getSite.js';
-import animate from './lib/animate.js';
-import ajax from './lib/ajax.js';
-import cookie from './lib/cookie.js';
-import { examineUser } from './lib/users.js';
-import { tick,clearTick } from './lib/timer.js';
-import { getMatrix } from './lib/transform.js';
+import queueAnimate from './lib/queueAnimate.js'
 import { css } from './lib/css.js';
+import ajax from './lib/ajax.js';
+import upload from './lib/upload.js';
+import cookie from './lib/cookie.js';
+import { tick,clearTick } from './lib/timer.js';
+import { getSite } from './lib/getSite.js';
+
 
 export { 
-    el, 
-    $,
-    getSite,
-    animate,
+    queueAnimate,
+    css,
     ajax, 
+    upload,
     cookie, 
-    examineUser,
     tick,
     clearTick,
-    getMatrix,
-    css
+    getSite
 };
 
 export default { 
-    el,
-    $,
-    getSite,
-    animate,
+    queueAnimate,
+    css,
     ajax, 
+    upload,
     cookie, 
-    examineUser,
     tick,
     clearTick,
-    getMatrix,
-    css
+    getSite
 };
 
 
